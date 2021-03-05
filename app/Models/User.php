@@ -13,8 +13,11 @@ class User extends Authenticatable
     use Billable, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
         'email',
+        'username',
+        'business_name',
+        'type',
+        'confirmed',
         'password',
     ];
 
@@ -40,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Withdrawal::class)->orderBy('id', 'DESC');
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'user_event', 'user_id', 'event_id');
+    }
+
     
 }
-

@@ -13,11 +13,20 @@ use App\Http\Resources\Operator as OperatorResource;
 use App\Http\Resources\Transaction as TransactionResource;
 use App\Http\Resources\Withdrawal as WithdrawalResource;
 
+
+
+
+
 class APIController extends Controller
 {
     public function users()
     {
         return UserResource::collection(User::all());
+    }
+
+    public function user(User $user)
+    {
+        return new UserResource($user);
     }
 
     public function operators()
@@ -34,5 +43,8 @@ class APIController extends Controller
     {
         return WithdrawalResource::collection(Withdrawal::all());
     }
+
+    
+
     
 }

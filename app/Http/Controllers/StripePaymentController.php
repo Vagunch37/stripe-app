@@ -49,8 +49,20 @@ class StripePaymentController extends Controller
         //     request()->user()->balance += $request->amount;
         //     request()->user()->save();
         // }
+        // dd($request->stripeToken);
 
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+        $stripe->issuing->cards->all(['limit' => 3]);
+
+        
+        // $customer = $stripe->customers->create([
+        // 'description' => 'My First Test Customer (created for API docs)',
+        // ]);
+
+        dd($customer);
+
+          
         $amount = (float) $request->amount;
         if(
             $transaction = $stripe->charges->create([
