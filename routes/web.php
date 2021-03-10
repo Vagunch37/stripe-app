@@ -22,9 +22,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Auth::routes();
@@ -64,12 +64,12 @@ Route::post('stripeWithdraw', [StripePaymentController::class, 'stripeWithdraw']
 
 
 Route::get('/', [TemplateController::class, 'index'])->name('index');
-Route::get('/live_events_community', [TemplateController::class, 'live_events_community'])->name('live_events_community');
-Route::get('/live_events_professional', [TemplateController::class, 'live_events_professional'])->name('live_events_professional');
+Route::get('/community', [TemplateController::class, 'community'])->name('community');
+Route::get('/professional', [TemplateController::class, 'professional'])->name('professional');
 Route::get('/livestream', [TemplateController::class, 'livestream'])->name('livestream');
 // Route::get('/login', [TemplateController::class, 'login'])->name('login');
 Route::get('/signupPro', [TemplateController::class, 'signupPro'])->name('signupPro');
-Route::get('/profile', [TemplateController::class, 'profile'])->name('profile');
+Route::get('/profile', [TemplateController::class, 'profile'])->name('profile')->middleware('isConfirmed');
 // ->middleware('auth');
 
 // Authentication Routes...

@@ -31,14 +31,14 @@
 			Notifications
 		</div>
 		<div id="dropdowncontent1" class="dropdownContent">
-			<a href="{{ route('live_events_professional') }}">Live Events</a>
-			<a href="">Upcoming Events</a>
-			<a href="">Event Archive</a>
+			<a href="{{ route('professional', ['timing' => 1] ) }}">Live Events</a>
+			<a href="{{ route('professional', ['timing' => 2] ) }}">Upcoming Events</a>
+			<a href="{{ route('professional', ['timing' => 3] ) }}">Event Archive</a>
 		</div>
 		<div id="dropdowncontent2" class="dropdownContent">
-			<a href="{{ route('live_events_community') }}">Live Events</a>
-			<a href="">Upcoming Events</a>
-			<a href="">Event Archive</a>
+			<a href="{{ route('community', ['timing' => 1]) }}">Live Events</a>
+			<a href="{{ route('community', ['timing' => 2]) }}">Upcoming Events</a>
+			<a href="{{ route('community', ['timing' => 3]) }}">Event Archive</a>
 		</div>
 	</div>
   @yield('content')
@@ -99,7 +99,15 @@
       }
       else {
         // alert("Please login");
-        Swal.fire('Please login to add to watchlist')
+        // Swal.fire('Please login to add to watchlist')
+        let login_route = '{{ route("login")  }}';
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please login to add to watchlist!',
+          confirmButtonText: `<a style="text-decoration:none;color:white;" href="${login_route}">Login</a>`
+          // footer: `<a style="text-decoration:none;" href="${login_route}">Login</a>`
+        })
 
         $(this).prop('checked', false);
         $(this).attr('disabled', true);

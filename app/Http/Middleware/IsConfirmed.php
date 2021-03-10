@@ -23,7 +23,8 @@ class IsConfirmed
         //     return $next($request);   
         // }
         if (!\Gate::allows('isConfirmed')) {
-            return back();
+            // return back();
+            return redirect()->route('login');
         }
         
         return $next($request);
